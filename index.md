@@ -1,4 +1,4 @@
-## How to do Sentiment analysis with Amazon's Reviews
+## How to do Sentiment Analysis with Amazon's Reviews
 
 You can use the [editor on GitHub](https://github.com/yikeliu-echo/yikeliu-echo.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
@@ -9,7 +9,25 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-Syntax highlighted code block
+# %%%% Preliminaries and library loading
+import datetime
+import os
+import pandas as pd
+import time
+import random
+
+# libraries to crawl websites
+from bs4 import BeautifulSoup
+from selenium import webdriver
+
+pd.set_option('display.max_rows', 10)
+pd.set_option('display.max_columns', 5)
+pd.set_option('display.width',800)
+path = 'C:/Users/Admin/Downloads/chromedriver_win32'
+os.chdir(path)
+
+driver = webdriver.Chrome()
+
 
 # Header 1
 ## Header 2
