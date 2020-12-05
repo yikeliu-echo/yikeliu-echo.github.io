@@ -1,13 +1,15 @@
-## How to do Sentiment Analysis with Amazon's Reviews
+# How to do Sentiment Analysis with Amazon's Reviews
 
 You can use the [editor on GitHub](https://github.com/yikeliu-echo/yikeliu-echo.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## Amazon Review Scrapping and Cleaning
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Since my English name is Echo. I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
+The number of comments is , which would be enough for trainning model.
 
+## Data Scrapping
 ```markdown
 # %%%% Preliminaries and library loading
 import datetime
