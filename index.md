@@ -7,7 +7,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 ## 1. Amazon Review Scrapping and Cleaning
 ### 1.1 Data Scrapping
 #### 1.1.1 Library and driver loading 
-```
+```python
 #Preliminaries and library loading
 import datetime
 import os
@@ -26,14 +26,14 @@ os.chdir(path)
 driver = webdriver.Chrome()
 ```
 #### 1.1.2 Find the link to scrap
-##### Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
+Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
 The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information
-```
+```python
 links_to_scrape = "https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
 driver.get(links_to_scrape)
 ```
 #### 1.1.3 Find all the reviews in the website
-```
+```python
 condition = True
 reviews_one_store = []
 
