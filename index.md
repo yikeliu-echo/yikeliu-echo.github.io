@@ -9,7 +9,7 @@ With the popularity of online shopping, competition among major e-commerce compa
 ## 2.1 Data Scrapping
 Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
 The number of comments is 10,048, which would be enough for trainning model. 
-https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
+[Review Link](https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews)
 
 ### 2.1.1 Library and driver loading 
 ```python
