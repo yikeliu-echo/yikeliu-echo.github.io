@@ -1,4 +1,4 @@
-![pic](https://raw.githubusercontent.com/linux-downey/bloc_test/master/picture/Makedown/Makedown.png)  
+![pic](https://www.google.com/imgres?imgurl=https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/how-to-get-amazon-reviews1.png?8aTNb_tMNas_DNOFaOnVfIuJxQo47zXv%26itok%3DbCeELZ5Z&imgrefurl=https://www.wordstream.com/blog/ws/2014/04/10/amazon-reviews&tbnid=vxNpQFN6NDSwHM&vet=1&docid=A2hUtvqKO6uX_M&w=512&h=275&source=sh/x/im.png)  
 # 1. Introduction
 ## 1.1 What is Sentiment Analysis?
 Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to judge the text with positive, negative and neutral judgment. 
