@@ -103,7 +103,6 @@ dta               = dta.sort_values(by='ML_group')
 inx_train         = dta.ML_group <  80                     
 inx_test          = dta.ML_group >= 80
 
-
 corpus          = dta.review_text.to_list()
 ngram_range     = (1,1)
 max_df          = 0.80
@@ -115,7 +114,6 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   
 X               = vectorizer.fit_transform(corpus)
 
-# %%% 4. Performing the TVT - SPLIT
 Y_train   = dta.star[inx_train].to_list()
 Y_test    = dta.star[inx_test].to_list()
 
@@ -123,3 +121,56 @@ X_train   = X[np.where(inx_train)[0],:]
 X_test    = X[np.where(inx_test) [0],:]
 ```
 
+
+```
+dta = pd.read_csv("AmazonReviewData.csv")
+dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset_index()[[0]].astype(int)
+dta.loc[dta['N_star_hat']>5,'N_star_hat'] = 5
+dta.loc[dta['N_star_hat']<1,'N_star_hat'] = 1
+# %%% 2. Data splitting
+dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
+dta               = dta.sort_values(by='ML_group')
+inx_train         = dta.ML_group <  80                     
+inx_test          = dta.ML_group >= 80
+
+# %%% 3. Putting structure in the text
+corpus          = dta.review_text.to_list()
+ngram_range     = (1,1)
+max_df          = 0.90
+min_df          = 0.01
+vectorizer      = CountVectorizer(lowercase   = True,
+                                  ngram_range = ngram_range,
+                                  max_df      = max_df     ,
+                                  min_df      = min_df     );
+                                  
+X               = vectorizer.fit_transform(corpus)
+
+print(vectorizer.get_feature_names())
+print(X.toarray())
+
+# %%% 4. Performing the TVT - SPLIT
+Y_train   = dta.star[inx_train].to_list()
+Y_test    = dta.star[inx_test].to_list()
+
+X_train   = X[np.where(inx_train)[0],:]
+X_test    = X[np.where(inx_test) [0],:]
+
+# %%% 
+clf                           = GaussianNB().fit(X_train.toarray(), Y_train)
+dta['N_star_hat']             = np.concatenate(
+        [
+                clf.predict(X_train.toarray()),
+                clf.predict(X_test.toarray( ))
+        ]).round().astype(int)
+dta.loc[dta['N_star_hat']>5,'N_star_hat'] = 5
+dta.loc[dta['N_star_hat']<1,'N_star_hat'] = 1
+
+
+C2= confusion_matrix(Y_test, dta.N_star_hat.loc[inx_test].to_list())
+print(C2)
+
+right = C2.diagonal().sum()
+total = C2.sum()
+R2 = right/total
+print("The Accuracy Rate of Naive Bayes Method is", R2) 
+```
