@@ -80,7 +80,7 @@ while (condition):
     driver.find_element_by_xpath("//li[@class='a-last']").click()
     time.sleep(random.randint(3,5)) 
 
-'''
+```
 
 ### Jekyll Themes
 
