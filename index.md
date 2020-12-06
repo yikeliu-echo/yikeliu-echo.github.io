@@ -1,3 +1,4 @@
+![pic]https://growtraffic.com/blog/2019/01/solicit-amazon-customer-reviews
 # 1. Introduction
 ## 1.1 What is Sentiment Analysis?
 Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to judge the text with positive, negative and neutral judgment. 
