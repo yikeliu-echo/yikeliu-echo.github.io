@@ -1,12 +1,16 @@
-# How to do Sentiment Analysis with Amazon's Reviews
+# 1. Introduction
+## 1.1 What is Sentiment Analysis?
+Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to judge the text with positive, negative and neutral judgment. 
+## 1.2 Why do sentiment analysis on Amazon's reviews?
+With the popularity of online shopping, competition among major e-commerce companies is fierce. In order to improve the quality of customer service, in addition to price wars, it is more and more important to understand customers' needs and listen to their voices.
 
-You can use the [editor on GitHub](https://github.com/yikeliu-echo/yikeliu-echo.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+# 2. Data Preparation
+## 2.1 Data Scrapping
+Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
+The number of comments is 10,048, which would be enough for trainning model. 
+https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-## 1. Amazon Review Scrapping and Cleaning
-### 1.1 Data Scrapping
-#### 1.1.1 Library and driver loading 
+### 2.1.1 Library and driver loading 
 ```python
 #Preliminaries and library loading
 import datetime
@@ -25,14 +29,12 @@ os.chdir(path)
 
 driver = webdriver.Chrome()
 ```
-#### 1.1.2 Find the link to scrap
-Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
-The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information
+### 2.1.2 Find the link to scrap
 ```python
 links_to_scrape = "https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
 driver.get(links_to_scrape)
 ```
-#### 1.1.3 Find all the reviews in the website
+### 2.1.3 Find all the reviews in the website
 ```python
 condition = True
 reviews_one_store = []
