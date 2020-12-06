@@ -11,7 +11,7 @@ The number of comments is , which would be enough for trainning model. Also, dat
 
 ### 1.1 Data Scrapping
 ```
-Preliminaries and library loading
+#Preliminaries and library loading
 import datetime
 import os
 import pandas as pd
@@ -28,11 +28,11 @@ os.chdir(path)
 
 driver = webdriver.Chrome()
 
-Decide the link to scrap
+#Decide the link to scrap
 links_to_scrape = "https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
 driver.get(links_to_scrape)
 
-Find all the reviews in the website and bringing them to python
+#Find all the reviews in the website and bringing them to python
 condition = True
 reviews_one_store = []
 
@@ -74,10 +74,8 @@ while (condition):
         
         reviews_one_store.append(one_review)
         
-click to get more reviews)
     driver.find_element_by_xpath("//li[@class='a-last']").click()
     time.sleep(random.randint(3,5)) 
-
 ```
 
 ### Jekyll Themes
