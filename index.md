@@ -5,11 +5,8 @@ You can use the [editor on GitHub](https://github.com/yikeliu-echo/yikeliu-echo.
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ## 1. Amazon Review Scrapping and Cleaning
-
-Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
-The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information.
-
 ### 1.1 Data Scrapping
+#### 1.1.1 Library and driver loading 
 ```
 #Preliminaries and library loading
 import datetime
@@ -27,12 +24,16 @@ path = 'C:/Users/Admin/Downloads/chromedriver_win32'
 os.chdir(path)
 
 driver = webdriver.Chrome()
-
-#Decide the link to scrap
+```
+#### 1.1.2 Find the link to scrap
+Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
+The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information
+```
 links_to_scrape = "https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
 driver.get(links_to_scrape)
-
-#Find all the reviews in the website and bringing them to python
+```
+#### 1.1.3 Find all the reviews in the website
+```
 condition = True
 reviews_one_store = []
 
