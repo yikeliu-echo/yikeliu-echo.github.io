@@ -11,7 +11,7 @@ The number of comments is , which would be enough for trainning model. Also, dat
 
 ### 1.1 Data Scrapping
 
-```javascript
+```python
 
 # Preliminaries and library loading
 import datetime
