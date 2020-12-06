@@ -10,9 +10,7 @@ Since my English name is Echo, I would like to scrap the review data that custom
 The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information.
 
 ### 1.1 Data Scrapping
-
 ```python
-
 Preliminaries and library loading
 import datetime
 import os
