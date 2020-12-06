@@ -83,7 +83,7 @@ while (condition):
 ```
 
 ## 2.2 Data Cleaning 
-```
+```python
 dta = pd.DataFrame.from_dict(reviews_one_store)
 
 #to check if there is some useful information lost
@@ -97,13 +97,13 @@ dta.to_csv("AmazonReviewData.csv")
 
 # 3. Model Development
 ## 3.1 Data Splliting
-```
+```python
 dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
 dta               = dta.sort_values(by='ML_group')
 inx_train         = dta.ML_group <  80                     
 inx_test          = dta.ML_group >= 80
 
-# %%% 3. Putting structure in the text
+
 corpus          = dta.review_text.to_list()
 ngram_range     = (1,1)
 max_df          = 0.80
@@ -114,9 +114,6 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   min_df      = min_df     );
                                   
 X               = vectorizer.fit_transform(corpus)
-
-print(vectorizer.get_feature_names())
-print(X.toarray())
 
 # %%% 4. Performing the TVT - SPLIT
 Y_train   = dta.star[inx_train].to_list()
