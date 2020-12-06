@@ -82,10 +82,47 @@ while (condition):
     time.sleep(random.randint(3,5)) 
 ```
 
-### Jekyll Themes
+## 2.2 Data Cleaning 
+```
+dta = pd.DataFrame.from_dict(reviews_one_store)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yikeliu-echo/yikeliu-echo.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+#to check if there is some useful information lost
+BeautifulSoup(dta.review_raw.iloc[1]).text
+#add rating star information into the dataframe
+dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset_index()[[0]].astype(int)
 
-### Support or Contact
+#take this dataframe into csv
+dta.to_csv("AmazonReviewData.csv")   
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# 3. Model Development
+## 3.1 Data Splliting
+```
+dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
+dta               = dta.sort_values(by='ML_group')
+inx_train         = dta.ML_group <  80                     
+inx_test          = dta.ML_group >= 80
+
+# %%% 3. Putting structure in the text
+corpus          = dta.review_text.to_list()
+ngram_range     = (1,1)
+max_df          = 0.80
+min_df          = 0.01
+vectorizer      = CountVectorizer(lowercase   = True,
+                                  ngram_range = ngram_range,
+                                  max_df      = max_df     ,
+                                  min_df      = min_df     );
+                                  
+X               = vectorizer.fit_transform(corpus)
+
+print(vectorizer.get_feature_names())
+print(X.toarray())
+
+# %%% 4. Performing the TVT - SPLIT
+Y_train   = dta.star[inx_train].to_list()
+Y_test    = dta.star[inx_test].to_list()
+
+X_train   = X[np.where(inx_train)[0],:]
+X_test    = X[np.where(inx_test) [0],:]
+```
+
