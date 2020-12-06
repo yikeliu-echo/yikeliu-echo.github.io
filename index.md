@@ -10,6 +10,7 @@ Since my English name is Echo, I would like to scrap the review data that custom
 The number of comments is , which would be enough for trainning model. Also, data cleaning work is necessary to get the useful information.
 
 ### 1.1 Data Scrapping
+
 ```markdown
 # Preliminaries and library loading
 import datetime
@@ -78,6 +79,7 @@ while (condition):
     driver.find_element_by_xpath("//li[@class='a-last']").click()
     time.sleep(random.randint(3,5)) 
 
+'''
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yikeliu-echo/yikeliu-echo.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
