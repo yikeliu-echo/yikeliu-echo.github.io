@@ -131,7 +131,7 @@ Y_test    = dta.star_group[inx_test].to_list()
 X_train   = X[np.where(inx_train)[0],:]
 X_test    = X[np.where(inx_test) [0],:]
 ```
-# 
+```
 clf                           = GaussianNB().fit(X_train.toarray(), Y_train)
 dta['N_star_hat']             = np.concatenate(
         [
