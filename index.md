@@ -94,46 +94,19 @@ dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset
 #take this dataframe into csv
 dta.to_csv("AmazonReviewData.csv")   
 ```
-
+https://blog.csdn.net/qq_29027865/article/details/81878295
 # 3. Model Development
-## 3.1 Data Splliting
+We will us
+## 3.1.1 确定自因变量 
+因变量是star 我们依据评分进行情感分类, 大于3分为积极情感, 小于3分为消极情感, 积极情感用1表示, 消极情感用0表示.
 ```python
-dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
-dta               = dta.sort_values(by='ML_group')
-inx_train         = dta.ML_group <  80                     
-inx_test          = dta.ML_group >= 80
-
-corpus          = dta.review_text.to_list()
-ngram_range     = (1,1)
-max_df          = 0.80
-min_df          = 0.01
-vectorizer      = CountVectorizer(lowercase   = True,
-                                  ngram_range = ngram_range,
-                                  max_df      = max_df     ,
-                                  min_df      = min_df     );
-                                  
-X               = vectorizer.fit_transform(corpus)
-
-Y_train   = dta.star[inx_train].to_list()
-Y_test    = dta.star[inx_test].to_list()
-
-X_train   = X[np.where(inx_train)[0],:]
-X_test    = X[np.where(inx_test) [0],:]
-```
-
-
-```
-dta = pd.read_csv("AmazonReviewData.csv")
 dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset_index()[[0]].astype(int)
-dta.loc[dta['N_star_hat']>5,'N_star_hat'] = 5
-dta.loc[dta['N_star_hat']<1,'N_star_hat'] = 1
-# %%% 2. Data splitting
-dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
-dta               = dta.sort_values(by='ML_group')
-inx_train         = dta.ML_group <  80                     
-inx_test          = dta.ML_group >= 80
-
-# %%% 3. Putting structure in the text
+dta.loc[dta['star'] >  2,'star_group'] = 1
+dta.loc[dta['star'] <= 2,'star_group'] = 0
+dta["star_group"].astype(int)
+```
+自变量 review text. 进行分词
+```python
 corpus          = dta.review_text.to_list()
 ngram_range     = (1,1)
 max_df          = 0.90
@@ -144,27 +117,27 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   min_df      = min_df     );
                                   
 X               = vectorizer.fit_transform(corpus)
+```
+## 3.1.1 Data Splliting - Training and Test
+```python
+dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
+dta               = dta.sort_values(by='ML_group')
+inx_train         = dta.ML_group <  80                     
+inx_test          = dta.ML_group >= 80
 
-print(vectorizer.get_feature_names())
-print(X.toarray())
-
-# %%% 4. Performing the TVT - SPLIT
-Y_train   = dta.star[inx_train].to_list()
-Y_test    = dta.star[inx_test].to_list()
+Y_train   = dta.star_group[inx_train].to_list()
+Y_test    = dta.star_group[inx_test].to_list()
 
 X_train   = X[np.where(inx_train)[0],:]
 X_test    = X[np.where(inx_test) [0],:]
-
-# %%% 
+```
+# 
 clf                           = GaussianNB().fit(X_train.toarray(), Y_train)
 dta['N_star_hat']             = np.concatenate(
         [
                 clf.predict(X_train.toarray()),
                 clf.predict(X_test.toarray( ))
         ]).round().astype(int)
-dta.loc[dta['N_star_hat']>5,'N_star_hat'] = 5
-dta.loc[dta['N_star_hat']<1,'N_star_hat'] = 1
-
 
 C2= confusion_matrix(Y_test, dta.N_star_hat.loc[inx_test].to_list())
 print(C2)
@@ -172,5 +145,5 @@ print(C2)
 right = C2.diagonal().sum()
 total = C2.sum()
 R2 = right/total
-print("The Accuracy Rate of Naive Bayes Method is", R2) 
+print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
