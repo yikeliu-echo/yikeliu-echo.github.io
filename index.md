@@ -19,12 +19,14 @@ import numpy as np
 import pandas as pd
 import time
 import random
+import matplotlib.pyplot as plt
 
 from bs4                             import BeautifulSoup
 from selenium                        import webdriver
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes             import MultinomialNB
 from sklearn.metrics                 import confusion_matrix
+from wordcloud                       import WordCloud
 
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.max_columns', 5)
@@ -101,7 +103,7 @@ dta.to_csv("AmazonReviewData.csv")
 https://blog.csdn.net/qq_29027865/article/details/81878295
 # 3. Model Development
 We will us
-## 3.1.1 确定自因变量 
+## 3.1 确定自因变量 
 因变量是star 我们依据评分进行情感分类, 大于3分为积极情感, 小于3分为消极情感, 积极情感用1表示, 消极情感用0表示.
 ```python
 dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset_index()[[0]].astype(int)
@@ -122,7 +124,16 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   
 X               = vectorizer.fit_transform(corpus)
 ```
-## 3.1.1 Data Splliting - Training and Test
+flist = vectorizer.get_feature_names()
+f = " ".join(flist)
+wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(f)
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
+
+wordcloud.to_file('test.png')
+
+## 3.2 Data Splliting - Training and Test
 ```python
 dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
 dta               = dta.sort_values(by='ML_group')
@@ -135,7 +146,8 @@ Y_test    = dta.star_group[inx_test].to_list()
 X_train   = X[np.where(inx_train)[0],:]
 X_test    = X[np.where(inx_test) [0],:]
 ```
-```
+## 3.3 Naive Bayes Model
+```python
 clf                           = MultinomialNB().fit(X_train.toarray(), Y_train)
 dta['N_star_hat']             = np.concatenate(
         [
@@ -151,26 +163,4 @@ total = C2.sum()
 R2 = right/total
 print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
-flist = vectorizer.get_feature_names()
 
-f = " ".join(flist)
-print str6
-from wordcloud import WordCloud
-
-#f = open(u'txt/AliceEN.txt','r').read()
-wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(f)
-
-# width,height,margin可以设置图片属性
-
-# generate 可以对全部文本进行自动分词,但是他对中文支持不好,对中文的分词处理请看我的下一篇文章
-#wordcloud = WordCloud(font_path = r'D:\Fonts\simkai.ttf').generate(f)
-# 你可以通过font_path参数来设置字体集
-
-#background_color参数为设置背景颜色,默认颜色为黑色
-
-import matplotlib.pyplot as plt
-plt.imshow(wordcloud)
-plt.axis("off")
-plt.show()
-
-wordcloud.to_file('test.png')
