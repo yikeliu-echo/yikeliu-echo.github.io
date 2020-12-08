@@ -123,6 +123,7 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   min_df      = min_df     );
                                   
 X               = vectorizer.fit_transform(corpus)
+```
 
 ```python
 flist = vectorizer.get_feature_names()
@@ -134,7 +135,7 @@ plt.show()
 
 wordcloud.to_file('test.png')
 ```
-<img src="C:/Usersyikel/Downloads/test.png" width="%200" height="%100" />
+<img src="https://s3.ax1x.com/2020/12/08/rpTCtS.md.png" width="%200" height="%100" />
 
 ## 3.2 Data Splliting - Training and Test
 ```python
