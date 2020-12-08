@@ -93,6 +93,7 @@ while (condition):
 ## 2.2 Data Cleaning 
 The most useful data would be the raw comment text and the star the customers are given. Also, I've scrapped two added information in case useful:
 1. The review conclusion which Amazon given 2. how many people thought this review is useful. 
+
 ```python
 dta = pd.DataFrame.from_dict(reviews_one_store)
 
@@ -104,7 +105,7 @@ dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset
 #take this dataframe into csv
 dta.to_csv("AmazonReviewData.csv")   
 ```
-https://blog.csdn.net/qq_29027865/article/details/81878295
+
 # 3. Model Development
 * Model: Naive Bayes
 * Dependent Variable: review star
@@ -132,7 +133,9 @@ vectorizer      = CountVectorizer(lowercase   = True,
 X               = vectorizer.fit_transform(corpus)
 ```
 Have a quick look at the word cloud
+
 <img src="https://s3.ax1x.com/2020/12/08/rp79D1.png" width="%10" height="%10" />
+
 ```python
 flist = vectorizer.get_feature_names()
 f = " ".join(flist)
