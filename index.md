@@ -4,6 +4,8 @@
 Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to judge the text with positive, negative and neutral judgment. 
 ## 1.2 Why do sentiment analysis on Amazon's reviews?
 With the popularity of online shopping, competition among major e-commerce companies is fierce. In order to improve the quality of customer service, in addition to price wars, it is more and more important to understand customers' needs and listen to their voices.
+## 1.3 Which model to choose?
+
 
 # 2. Data Preparation
 ## 2.1 Data Scrapping
@@ -89,6 +91,8 @@ while (condition):
 ```
 
 ## 2.2 Data Cleaning 
+The most useful data would be the raw comment text and the star the customers are given. Also, I've scrapped two added information in case useful:
+1. The review conclusion which Amazon given 2. how many people thought this review is useful. 
 ```python
 dta = pd.DataFrame.from_dict(reviews_one_store)
 
@@ -102,16 +106,19 @@ dta.to_csv("AmazonReviewData.csv")
 ```
 https://blog.csdn.net/qq_29027865/article/details/81878295
 # 3. Model Development
-We will us
-## 3.1 确定自因变量 
-因变量是star 我们依据评分进行情感分类, 大于3分为积极情感, 小于3分为消极情感, 积极情感用1表示, 消极情感用0表示.
+* Model: Naive Bayes
+* Dependent Variable: review star
+* Independent Variable: review text
+
+## 3.1 Decide on variables
+The dependent variable is review star. We classify emotions according to the score, more than 2 are divided into positive emotions, less than or equal to 2 are divided into negative emotions. Positive emotions are represented by 1, and negative emotions are represented by 0.
 ```python
 dta['star'] = dta.review_raw.str.extract('([0-9])(.[0]) (out of 5 stars)').reset_index()[[0]].astype(int)
 dta.loc[dta['star'] >  2,'star_group'] = 1
 dta.loc[dta['star'] <= 2,'star_group'] = 0
 dta["star_group"].astype(int)
 ```
-自变量 review text. 进行分词
+The independent variable is review text. We'll separate the sentences into words.
 ```python
 corpus          = dta.review_text.to_list()
 ngram_range     = (1,1)
@@ -124,7 +131,8 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   
 X               = vectorizer.fit_transform(corpus)
 ```
-
+Have a quick look at the word cloud
+<img src="https://s3.ax1x.com/2020/12/08/rp79D1.png" width="%10" height="%10" />
 ```python
 flist = vectorizer.get_feature_names()
 f = " ".join(flist)
@@ -135,9 +143,9 @@ plt.show()
 
 wordcloud.to_file('test.png')
 ```
-<img src="https://s3.ax1x.com/2020/12/08/rp79D1.png" width="%10" height="%10" />
 
 ## 3.2 Data Splliting - Training and Test
+The original data is randomly divided into 100 groups. The first 80 groups are used as training data while left 20 groups are used as test data.
 ```python
 dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
 dta               = dta.sort_values(by='ML_group')
@@ -167,4 +175,4 @@ total = C2.sum()
 R2 = right/total
 print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
-
+The currency rate is 89.02%, which would be a good model.
