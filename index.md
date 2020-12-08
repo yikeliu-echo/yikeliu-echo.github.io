@@ -123,7 +123,8 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   min_df      = min_df     );
                                   
 X               = vectorizer.fit_transform(corpus)
-```
+
+```python
 flist = vectorizer.get_feature_names()
 f = " ".join(flist)
 wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(f)
@@ -132,6 +133,8 @@ plt.axis("off")
 plt.show()
 
 wordcloud.to_file('test.png')
+```
+<img src="C:/Usersyikel/Downloads/test.png" width="%200" height="%100" />
 
 ## 3.2 Data Splliting - Training and Test
 ```python
