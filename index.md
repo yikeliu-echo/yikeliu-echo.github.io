@@ -135,7 +135,7 @@ plt.show()
 
 wordcloud.to_file('test.png')
 ```
-<img src="https://s3.ax1x.com/2020/12/08/rpTCtS.md.png" width="%200" height="%100" />
+<img src="https://s3.ax1x.com/2020/12/08/rpTCtS.md.png" width="%50" height="%50" />
 
 ## 3.2 Data Splliting - Training and Test
 ```python
