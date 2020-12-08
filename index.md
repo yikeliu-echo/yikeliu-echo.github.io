@@ -14,13 +14,17 @@ The number of comments is 10,048, which would be enough for trainning model.
 ### 2.1.1 Library and driver loading 
 ```python
 #Preliminaries and library loading
-import datetime
 import os
+import numpy as np
 import pandas as pd
 import time
 import random
-from bs4 import BeautifulSoup
-from selenium import webdriver
+
+from bs4                             import BeautifulSoup
+from selenium                        import webdriver
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes             import MultinomialNB
+from sklearn.metrics                 import confusion_matrix
 
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.max_columns', 5)
@@ -132,7 +136,7 @@ X_train   = X[np.where(inx_train)[0],:]
 X_test    = X[np.where(inx_test) [0],:]
 ```
 ```
-clf                           = GaussianNB().fit(X_train.toarray(), Y_train)
+clf                           = MultinomialNB().fit(X_train.toarray(), Y_train)
 dta['N_star_hat']             = np.concatenate(
         [
                 clf.predict(X_train.toarray()),
@@ -147,3 +151,26 @@ total = C2.sum()
 R2 = right/total
 print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
+flist = vectorizer.get_feature_names()
+
+f = " ".join(flist)
+print str6
+from wordcloud import WordCloud
+
+#f = open(u'txt/AliceEN.txt','r').read()
+wordcloud = WordCloud(background_color="white",width=1000, height=860, margin=2).generate(f)
+
+# width,height,margin可以设置图片属性
+
+# generate 可以对全部文本进行自动分词,但是他对中文支持不好,对中文的分词处理请看我的下一篇文章
+#wordcloud = WordCloud(font_path = r'D:\Fonts\simkai.ttf').generate(f)
+# 你可以通过font_path参数来设置字体集
+
+#background_color参数为设置背景颜色,默认颜色为黑色
+
+import matplotlib.pyplot as plt
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
+
+wordcloud.to_file('test.png')
