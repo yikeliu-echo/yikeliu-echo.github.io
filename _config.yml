@@ -1,6 +1,7 @@
 theme: jekyll-theme-cayman
 title: Welcome to Yike Liu's Homepage!
 description: Maief student @ Brandeis
+show_downloads: true
 
 author:
     name:         PIZn
