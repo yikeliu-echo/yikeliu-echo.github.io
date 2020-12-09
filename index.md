@@ -5,6 +5,7 @@ Sentiment analysis, also known as severity analysis and opinion mining, is the p
 ## 1.2 Why do sentiment analysis on Amazon's reviews?
 With the popularity of online shopping, competition among major e-commerce companies is fierce. In order to improve the quality of customer service, in addition to price wars, it is more and more important to understand customers' needs and listen to their voices.
 ## 1.3 Which model to choose?
+I would like to try Naive Bayesian Model(NBM) to see whether it has a high accurancy rate.
 
 
 # 2. Data Preparation
@@ -107,7 +108,7 @@ dta.to_csv("AmazonReviewData.csv")
 ```
 
 # 3. Model Development
-* Model: Naive Bayes
+* Model: Naive Bayesian Model, NBM
 * Dependent Variable: review star
 * Independent Variable: review text
 
