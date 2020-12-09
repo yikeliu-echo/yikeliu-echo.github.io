@@ -135,7 +135,7 @@ X               = vectorizer.fit_transform(corpus)
 ```
 Have a quick look at the word cloud
 
-<img src="https://s3.ax1x.com/2020/12/08/rp79D1.png" width="%10" height="%10" />
+<img src="https://s3.ax1x.com/2020/12/09/rPYOBt.png" width="%10" height="%10" />
 
 ```python
 flist = vectorizer.get_feature_names()
