@@ -1,7 +1,12 @@
 theme: jekyll-theme-cayman
 title: Welcome to Yike Liu's Homepage!
-description: Maief student @ Brandeis, seeking for intern of Data Analyst！
+description: Maief student @ Brandeis
 
+author:
+    name:         PIZn
+    email:        pizner@gmail.com
+    description:  "The one theme is another web theme design by PIZn."
+    
 follow:
     email:        yikel@brandeis.edu
     github:       https://github.com/yikeliu-echo
