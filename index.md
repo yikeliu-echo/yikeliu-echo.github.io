@@ -14,7 +14,8 @@ I would like to try Naive Bayesian Model(NBM) to see whether it has a high accur
 Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
 The number of comments is 10,048, which would be enough for trainning model. 
 [Review Link](https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews)
-[![rFgiAU.jpg](https://s3.ax1x.com/2020/12/10/rFgiAU.jpg)](https://imgchr.com/i/rFgiAU)
+
+[![rFo0UI.jpg](https://s3.ax1x.com/2020/12/10/rFo0UI.jpg)](https://imgchr.com/i/rFo0UI)
 
 ### 2.1.1 Library and driver loading 
 ```python
@@ -123,6 +124,8 @@ dta.loc[dta['star'] <= 2,'star_group'] = 0
 dta["star_group"].astype(int)
 ```
 The independent variable is review text. We'll separate the sentences into words.
+
+[![rFoy28.png](https://s3.ax1x.com/2020/12/10/rFoy28.png)](https://imgchr.com/i/rFoy28)
 ```python
 corpus          = dta.review_text.to_list()
 ngram_range     = (1,1)
@@ -181,4 +184,4 @@ total = C2.sum()
 R2 = right/total
 print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
-The currency rate is 89.02%, which would be a good model.
+The correction rate is 89.02%, which would be a good model.
