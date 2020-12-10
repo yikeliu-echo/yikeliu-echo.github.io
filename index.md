@@ -15,7 +15,7 @@ Since my English name is Echo, I would like to scrap the review data that custom
 The number of comments is 10,048, which would be enough for trainning model. 
 [Review Link](https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews)
 
-[![rFo0UI.jpg](https://s3.ax1x.com/2020/12/10/rFo0UI.jpg)](https://imgchr.com/i/rFo0UI)
+[![rFTcJx.jpg](https://s3.ax1x.com/2020/12/10/rFTcJx.jpg)](https://imgchr.com/i/rFTcJx)
 
 ### 2.1.1 Library and driver loading 
 ```python
@@ -138,7 +138,7 @@ vectorizer      = CountVectorizer(lowercase   = True,
                                   
 X               = vectorizer.fit_transform(corpus)
 ```
-Have a quick look at the word cloud
+Have a quick look at the word cloud:
 
 <img src="https://s3.ax1x.com/2020/12/09/rPYOBt.png" width="%10" height="%10" />
 
@@ -153,7 +153,7 @@ plt.show()
 wordcloud.to_file('test.png')
 ```
 
-## 3.2 Data Splliting - Training and Test
+## 3.2 Data Splitting - Training and Test
 The original data is randomly divided into 100 groups. The first 80 groups are used as training data while left 20 groups are used as test data.
 ```python
 dta['ML_group']   = np.random.randint(100,size = dta.shape[0])
@@ -184,4 +184,7 @@ total = C2.sum()
 R2 = right/total
 print("The Accuracy Rate of Naive Bayes Method is", R2)  
 ```
-The correction rate is 89.02%, which would be a good model.
+
+[![rFbhOU.png](https://s3.ax1x.com/2020/12/10/rFbhOU.png)](https://imgchr.com/i/rFbhOU)
+
+The correction rate is 90.82%, which would be a good model.
