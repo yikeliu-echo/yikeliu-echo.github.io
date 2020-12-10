@@ -1,4 +1,4 @@
-How to do Sentiment Analysis for Product Review on Amazon
+# How to do Sentiment Analysis for Product Review on Amazon
 <img src="https://growtraffic-bc85.kxcdn.com/blog/wp-content/uploads/2019/01/Amazon-5-Star-Review-Illustration.jpg" width="%200" height="%100" />
 # 1. Introduction
 ## 1.1 What is Sentiment Analysis?
