@@ -1,7 +1,8 @@
+How to do Sentiment Analysis for Product Review on Amazon
 <img src="https://growtraffic-bc85.kxcdn.com/blog/wp-content/uploads/2019/01/Amazon-5-Star-Review-Illustration.jpg" width="%200" height="%100" />
 # 1. Introduction
 ## 1.1 What is Sentiment Analysis?
-Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to judge the text with positive, negative and neutral judgment. 
+Sentiment analysis, also known as severity analysis and opinion mining, is the process of analyzing, processing, summarizing and reasoning subjective texts with emotional colors. The purpose of sentiment analysis is to separate the text with positive, negative and neutral judgment. 
 ## 1.2 Why do sentiment analysis on Amazon's reviews?
 With the popularity of online shopping, competition among major e-commerce companies is fierce. In order to improve the quality of customer service, in addition to price wars, it is more and more important to understand customers' needs and listen to their voices.
 ## 1.3 Which model to choose?
@@ -13,6 +14,7 @@ I would like to try Naive Bayesian Model(NBM) to see whether it has a high accur
 Since my English name is Echo, I would like to scrap the review data that customers left for Echo Show - HD smart display with Alexa.
 The number of comments is 10,048, which would be enough for trainning model. 
 [Review Link](https://www.amazon.com/Echo-Show-8/product-reviews/B07PF1Y28C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews)
+[![rFgiAU.jpg](https://s3.ax1x.com/2020/12/10/rFgiAU.jpg)](https://imgchr.com/i/rFgiAU)
 
 ### 2.1.1 Library and driver loading 
 ```python
